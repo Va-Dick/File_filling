@@ -43,20 +43,24 @@ std::string Catalog::SingleThread(const int& begin_, const int& end_){
 }
 
 std::string Catalog::Parsing(std::ifstream file){
-	std::string tokens, line, result;
-	getline(file, tokens);
+	std::string line, token, tokens, result;
 	getline(file, line);
-
 	std::string_view str = move(line);
+
+	while(getline(file, token)){
+		if(token != ""){
+			tokens += move(token);
+		}
+	}
 	while(true){
-		size_t token = str.find_first_of(tokens);
-		result += str.substr(0, token);
+		size_t find_token = str.find_first_of(tokens);
+		result += str.substr(0, find_token);
 		result += "\n";
-		if(token == str.npos){
+		if(find_token == str.npos){
 			break;
 		}
 		else{
-			str.remove_prefix(token + 1);
+			str.remove_prefix(find_token + 1);
 		}
 	}
 	return move(result);
