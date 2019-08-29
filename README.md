@@ -12,3 +12,7 @@ When you run the program you must enter the directory name and address of an emp
     >Enter directory name and file name
     >C:\project	file.txt
     >The program completed without errors
+
+For launching the program, you must use the C ++ 17 standard.
+For working with string_view, you need to specify the flag “--add / std: c ++” in the settings
+C / C ++ -> command line -> advanced options
